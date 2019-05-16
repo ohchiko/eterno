@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1696,74 +1696,6 @@ var _m = m.m,_trust = m.trust,_fragment = m.fragment,_mount = m.mount,_route = m
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.js");
-/* harmony import */ var _components_Books__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Books */ "./resources/js/components/Books.js");
-
-
-
-var headers = [];
-headers['X-Requested-With'] = 'XMLHttpRequest';
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  headers['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-
-mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults = {
-  headers: headers
-};
-mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.prefix('#');
-mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route(document.body.querySelector('main'), '/', {
-  '/': _components_Home__WEBPACK_IMPORTED_MODULE_1__["default"],
-  '/books': _components_Books__WEBPACK_IMPORTED_MODULE_2__["default"]
-});
-
-/***/ }),
-
-/***/ "./resources/js/components/Books.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Books.js ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
-/* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-
-
-var component = {
-  view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title', document.body.querySelector('#userName').innerHTML + '\'s Books'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex.flex-wrap.items-center.justify-around', _toConsumableArray(Array(10).keys()).map(function () {
-      return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('img.card__header'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__body', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__title', '2018: The Year of Greatness!'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__description', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__footer')]);
-    }))]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = (component);
-
-/***/ }),
-
 /***/ "./resources/js/components/Copy.js":
 /*!*****************************************!*\
   !*** ./resources/js/components/Copy.js ***!
@@ -1786,10 +1718,10 @@ var component = {
 
 /***/ }),
 
-/***/ "./resources/js/components/Home.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/Home.js ***!
-  \*****************************************/
+/***/ "./resources/js/components/Login.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Login.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1801,33 +1733,114 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = {
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', []), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/login][method=post]', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
+      value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Sign In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=#]', 'Forgot Password?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (component);
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/components/Register.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Register.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+/* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
+
+
+var component = {
+  view: function view() {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/register][method=post]', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
+      value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=name]', 'Name'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#name.form__input[type=text][name=name][autocomplete=off][autofocus][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=confirmPassword]', 'Confirm Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#confirmPassword.form__input[type=password][name=password_confirmation][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Register'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=/login]', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Have account?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
 
 /***/ }),
 
-/***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/***/ "./resources/js/components/Welcome.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Welcome.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+
+var component = {
+  view: function view() {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-center.text-2xl.text-gray-700.mb-4', 'Welcome'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-center.text-md.text-gray-500.mb-8', 'Let your yearbook go online!'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex.items-center.justify-around', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/login].font-bold', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Log In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/register].font-bold', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Register')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-center.text-gray-500.text-xs', [mithril__WEBPACK_IMPORTED_MODULE_0__["default"].trust('&copy;'), '2019 ', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/]', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Eterno'), '. All rights reserved'])]);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
+/***/ "./resources/js/guest.js":
+/*!*******************************!*\
+  !*** ./resources/js/guest.js ***!
+  \*******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.js");
+/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
+/* harmony import */ var _components_Welcome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Welcome */ "./resources/js/components/Welcome.js");
+
+
+
+
+var headers = [];
+headers['X-Requested-With'] = 'XMLHttpRequest';
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  headers['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults = {
+  headers: headers
+};
+mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.prefix('#');
+mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route(document.body.querySelector('main'), '/welcome', {
+  '/welcome': _components_Welcome__WEBPACK_IMPORTED_MODULE_3__["default"],
+  '/login': _components_Login__WEBPACK_IMPORTED_MODULE_1__["default"],
+  '/register': _components_Register__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+/***/ }),
+
+/***/ 1:
+/*!*************************************!*\
+  !*** multi ./resources/js/guest.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/gregorio/Documents/codes/eterno/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/gregorio/Documents/codes/eterno/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/gregorio/Documents/codes/eterno/resources/js/guest.js */"./resources/js/guest.js");
 
 
 /***/ })

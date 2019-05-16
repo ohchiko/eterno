@@ -19,11 +19,13 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
-        DB::table('users')->insert(['name' => 'Administrator', 'email' => 'admin@eterno.loc', 'password' => bcrypt('secret')]);
+        DB::table('users')->insert(['name' => 'Administrator', 'email' => 'admin@eterno.loc', 'password' => bcrypt('secret'), 'admin' => true]);
     }
 
     /**
