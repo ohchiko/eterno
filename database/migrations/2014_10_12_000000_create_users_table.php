@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(['name' => 'Administrator', 'email' => 'admin@eterno.loc', 'password' => bcrypt('secret')]);
     }
 
     /**
