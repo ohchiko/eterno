@@ -4,5 +4,89 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+    @apply text-blue-500 underline;
+
+    &:hover, &:focus {
+        @apply text-blue-800;
+    }
+}
+
+form.form {
+    .form__group {
+        @apply mb-4;
+    }
+
+    .form__footer {
+        @apply flex items-center justify-between;
+    }
+
+    .input__label {
+        @apply block text-gray-700 text-sm font-bold mb-2;
+    }
+
+    .form__input {
+        @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+
+        &:focus {
+            @apply outline-none shadow-outline;
+        }
+    }
+
+    .form__button {
+        @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+
+        &:hover {
+            @apply bg-blue-700;
+        }
+
+        &:focus {
+            @apply outline-none shadow-outline;
+        }
+    }
+
+    .form__link {
+        @apply inline-block align-baseline font-bold text-sm;
+    }
+}
+
+.form__copy {
+    @apply text-center text-gray-500 text-xs;
+}
+
+.content {
+    @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+
+    .content__title {
+        @apply text-3xl font-bold text-gray-700;
+    }
+}
+
+.card {
+    @apply max-w-sm rounded overflow-hidden shadow-lg;
+
+    .card__header {
+        @apply w-full;
+    }
+
+    .card__body, .card__footer {
+        @apply px-6 py-4;
+    }
+
+    .card__title {
+        @apply font-bold text-xl text-gray-700 mb-2;
+    }
+
+    .card__description {
+        @apply text-gray-700 text-base;
+    }
+
+    .card__tag {
+        @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2;
+    }
+}
