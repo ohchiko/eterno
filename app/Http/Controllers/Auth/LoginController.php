@@ -54,8 +54,8 @@ class LoginController extends Controller
                     'grant_type' => 'password',
                     'client_id' => $this->client->id,
                     'client_secret' => $this->client->secret,
-                    'username' => $email,
-                    'password' => $password,
+                    'username' => $request->email,
+                    'password' => $request->password,
                     'scope' => ''
                 ]
             ]);

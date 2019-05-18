@@ -19,6 +19,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "lodash.isempty": "^4.4.0",
         "mithril": "^2.0.0-rc.4"
     }
 }

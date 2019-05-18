@@ -36,6 +36,10 @@ form.form {
         &:focus {
             @apply outline-none shadow-outline;
         }
+
+        &:read-only {
+            @apply bg-gray-200;
+        }
     }
 
     .form__button {
@@ -68,7 +72,7 @@ form.form {
 }
 
 .card {
-    @apply max-w-sm rounded overflow-hidden shadow-lg;
+    @apply max-w-sm rounded overflow-hidden shadow-lg my-6;
 
     .card__header {
         @apply w-full;

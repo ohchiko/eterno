@@ -7599,6 +7599,14 @@ form.form .form__input:focus {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
+form.form .form__input:-moz-read-only {
+  background-color: #edf2f7;
+}
+
+form.form .form__input:read-only {
+  background-color: #edf2f7;
+}
+
 form.form .form__button {
   background-color: #4299e1;
   color: #fff;
@@ -7654,6 +7662,8 @@ form.form .form__link {
   border-radius: 0.25rem;
   overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .card .card__header {
