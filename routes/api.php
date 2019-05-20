@@ -20,5 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->group(function () {
     Route::apiResources([
         'books' => 'BookController',
+        'users' => 'UserController',
     ]);
 });
+
+Route::middleware('guest')->post('/users/login', 'Auth\LoginController@authenticate')->name('users.login');

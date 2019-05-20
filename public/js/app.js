@@ -2410,16 +2410,30 @@ mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route(document.body.querySelecto
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
 /* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 var component = {
+  oninit: function oninit() {//User.fetch(document.body.querySelector('#userId').innerHTML);
+  },
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title', document.body.querySelector('#userName').innerHTML + '\'s Account'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title', document.body.querySelector('#userName').innerHTML + '\'s Account'), lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content', {
+      onsubmit: function onsubmit(e) {
+        e.preventDefault();
+        _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].update({
+          name: e.target.elements.name.value
+        }, _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current.id);
+      }
+    }, [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
       value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
     }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=name]', 'Name'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#name.form__input[type=text][name=name][autocomplete=off][required]', {
-      value: document.body.querySelector('#userName').innerHTML
+      value: _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current.name
     })]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required][readonly]', {
-      value: document.body.querySelector('#userEmail').innerHTML
+      value: _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current.email
     })]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(''), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Save Changes')])])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
   }
 };
@@ -2485,7 +2499,21 @@ var component = {
     _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].fetch(vnode.attrs.id);
   },
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__body', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.card__title', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.name), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-gray-700.text-sm.mb-4', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.description), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.bg-gray-200.rounded-full.inline-block.py-1.px-3.text-xs.text-gray-700.font-bold', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.user.name)])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content.flex.flex-wrap.justify-between', lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__body', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.card__title', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.name), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-gray-700.text-sm.mb-4', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.description), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.bg-gray-200.rounded-full.inline-block.py-1.px-3.text-xs.text-gray-700.font-bold', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.user.name)])]), lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('iframe#pdfViewer', {
+      src: 'js/pdfjs/web/pdfjs_viewer.html',
+      onload: function onload(e) {
+        var raw = atob(_models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.file),
+            uint8Array = new Uint8Array(raw.length),
+            pdfjsFrame = e.target;
+
+        for (var i = 0; i < raw.length; i++) {
+          uint8Array[i] = raw.charCodeAt(i);
+        }
+
+        var pdfData = uint8Array;
+        PDFViewerApplication.open(pdfData);
+      }
+    })])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (component);
@@ -2637,6 +2665,95 @@ var model = {
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'delete',
       url: '/api/books/' + id,
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+    })["catch"](function (e) {
+      model.error = JSON.parse(e.message);
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (model);
+
+/***/ }),
+
+/***/ "./resources/js/models/User.js":
+/*!*************************************!*\
+  !*** ./resources/js/models/User.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+
+var model = {
+  current: {},
+  list: [],
+  error: {},
+  login: function login(data) {
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+      method: 'post',
+      url: '/api/users/login',
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: data
+    }).then(function (res) {
+      localStorage.setItem('userid', res.id);
+      console.log(res);
+      location.replace('/home');
+    })["catch"](function (e) {
+      model.error = JSON.parse(e.message);
+    });
+  },
+  fetchAll: function fetchAll() {
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+      method: 'get',
+      url: '/api/users',
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+    }).then(function (res) {
+      model.list = res;
+    })["catch"](function (e) {
+      model.error = JSON.parse(e.message);
+    });
+  },
+  fetch: function fetch(id) {
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+      method: 'get',
+      url: '/api/users/' + id,
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+    }).then(function (res) {
+      model.current = res;
+    })["catch"](function (e) {
+      model.error = JSON.parse(e.message);
+    });
+  },
+  create: function create(data) {
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+      method: 'post',
+      url: '/api/users',
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: data
+    }).then(function (res) {
+      model.current = res;
+    })["catch"](function (e) {
+      model.error = JSON.parse(e.message);
+    });
+  },
+  update: function update(data, id) {
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+      method: 'put',
+      url: '/api/users/' + id,
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: data
+    }).then(function (res) {
+      model.current = res;
+    })["catch"](function (e) {
+      model.error = JSON.parse(e.message);
+    });
+  },
+  remove: function remove(id) {
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+      method: 'delete',
+      url: '/api/users/' + id,
       headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);

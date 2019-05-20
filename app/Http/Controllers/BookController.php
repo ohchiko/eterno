@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -52,7 +53,10 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return Auth::user()->books()->with('user')->findOrFail($id);
+        $book = Auth::user()->books()->with('user')->findOrFail($id);
+        $book->file = base64_encode(Storage::get($book->file_url));
+
+        return $book;
     }
 
     /**

@@ -50,7 +50,7 @@
                     @endif
                 </div>
                 <div>
-                    <span class="inline-block text-xs text-gray-700">Logged in as: <span id="userName">{{ Auth::user()->name }}</span></span>
+                    <span class="inline-block text-xs text-gray-700">Logged in as: <span id="userName">{{ Auth::user()->name }}</span><span class="hidden" id="userId">{{ Auth::id() }}</span></span>
                     <span id="userEmail" class="inline-block text-xs text-gray-700 hidden">{{ Auth::user()->email }}</span>
                     <a href="/logout" class="inline-block text-xs mx-2" onclick="event.preventDefault();
                                                                                 document.body.querySelector('form#logout-form').submit();">Logout</a>
