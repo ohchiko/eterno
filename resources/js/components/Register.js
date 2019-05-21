@@ -1,10 +1,25 @@
 import m from "mithril"
 import Copy from "./Copy";
+import _isEmpty from "lodash.isempty"
+import User from "../models/User"
+import Alert from "./Alert"
 
 var component = {
     view: () => {
         return m('.w-full.max-w-xs.mx-auto', [
-            m('form.form.content[action=/register][method=post]', [
+            _isEmpty(User.error) ? null : m(Alert, { type: 'error', messsage: User.error.errors.user[0] }),
+            m('form.form.content[action=/register][method=post]', {
+                onsubmit: e => {
+                    e.preventDefault();
+
+                    User.create({
+                        'name': e.target.elements.name.value,
+                        'email': e.target.elements.email.value,
+                        'password': e.target.elements.password.value,
+                        'password_confirmation': e.target.elements.password_confirmation.value,
+                    });
+                }
+            }, [
                 m('input[type=hidden][name=_token]', {
                     value: m.defaults.headers['X-CSRF-TOKEN'],
                 }),

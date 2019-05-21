@@ -5,9 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        if ($user !== null && Hash::check($request->password, $user->password))
+            return $user->only(['name', 'email', 'id', 'api_token']);
+        else
+            return response()->json([
+                'message' => 'Unauthorized.',
+                'errors' => [
+                    'user' => ['Data user tidak ditemukan.'],
+                ],
+            ], 401);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +57,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'api_token' => Str::random(60),
         ]);
 
         return $user;

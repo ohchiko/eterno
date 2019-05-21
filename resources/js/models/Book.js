@@ -9,6 +9,7 @@ var model = {
             method: 'get',
             url: '/api/books',
             headers: m.defaults.headers,
+            data: { api_token: window.getUserApiToken() },
         })
         .then(res => {
             model.list = res;
@@ -22,6 +23,7 @@ var model = {
             method: 'get',
             url: '/api/books/' + id,
             headers: m.defaults.headers,
+            data: { api_token: window.getUserApiToken() },
         })
         .then(res => {
             model.current = res;
@@ -31,6 +33,7 @@ var model = {
         });
     },
     create: data => {
+        data.append('api_token', window.getUserApiToken());
         m.request({
             method: 'post',
             url: '/api/books',
@@ -45,6 +48,7 @@ var model = {
         });
     },
     update: (data, id) => {
+        data.api_token = window.getUserApiToken();
         m.request({
             method: 'put',
             url: '/api/books/' + id,
@@ -63,6 +67,7 @@ var model = {
             method: 'delete',
             url: '/api/books/' + id,
             headers: m.defaults.headers,
+            data: { api_token: window.getUserApiToken() },
         })
         .catch(e => {
             model.error = JSON.parse(e.message);

@@ -4,13 +4,10 @@ import User from "../models/User"
 import _isEmpty from "lodash.isempty"
 
 var component = {
-    oninit: () => {
-        //User.fetch(document.body.querySelector('#userId').innerHTML);
-    },
     view: () => {
         return m('.w-full.max-w-5xl.mx-auto', [
             m('.content', [
-                m('p.content__title', document.body.querySelector('#userName').innerHTML + '\'s Account'),
+                m('p.content__title', User.current.name + '\'s Account'),
                 _isEmpty(User.current) ? null : m('form.form.content', {
                     onsubmit: e => {
                         e.preventDefault();
@@ -19,7 +16,7 @@ var component = {
                             name: e.target.elements.name.value,
                         }, User.current.id);
                     },
-                    }, [
+                }, [
                     m('input[type=hidden][name=_token]', {
                         value: m.defaults.headers['X-CSRF-TOKEN'],
                     }),

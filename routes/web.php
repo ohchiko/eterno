@@ -12,12 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 })->middleware('guest');
-
-//Auth::routes();
-//Route::post('login', 'Auth\LoginController@authenticate')->name('login');
-//Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-//Route::post('register', 'Auth\RegisterController@register')->name('register');
-
-//Route::get('/home', 'HomeController@index')->name('home');

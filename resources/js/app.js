@@ -1,9 +1,21 @@
 import m from "mithril"
+import Nav from "./components/Nav"
+import Login from "./components/Login"
+import Register from "./components/Register"
+import Welcome from "./components/Welcome"
 import Home from "./components/Home"
 import Books from "./components/Books"
 import Account from "./components/Account"
 import BookNew from "./components/BookNew"
 import BookView from "./components/BookView"
+import Users from "./components/Users"
+
+window.getUserApiToken = function () {
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user !== null)
+        return user.api_token;
+    return false;
+}
 
 let headers = [];
 headers['X-Requested-With'] = 'XMLHttpRequest';
@@ -16,12 +28,16 @@ if (token) {
 
 m.defaults = { headers };
 
-m.route.prefix('#');
+m.mount(document.body.querySelector('nav'), Nav);
 
 m.route(document.body.querySelector('main'), '/', {
     '/': Home,
+    '/welcome': Welcome,
+    '/login': Login,
+    '/register': Register,
     '/books': Books,
     '/account': Account,
     '/books/new': BookNew,
     '/books/:id': BookView,
+    '/users': Users,
 });

@@ -2,10 +2,12 @@ import m from "mithril"
 import Copy from "./Copy"
 import User from "../models/User"
 import _isEmpty from "lodash.isempty"
+import Alert from "./Alert"
 
 var component = {
     view: () => {
         return m('.w-full.max-w-xs.mx-auto', [
+            _isEmpty(User.error) ? null : m(Alert, { type: 'error', message: User.error.errors.user[0] }),
             m('form.form.content[action=/login][method=post]', {
                 onsubmit: e => {
                     e.preventDefault();
@@ -22,7 +24,6 @@ var component = {
                 m('.form__group', [
                     m('label.input__label[for=email]', 'Email'),
                     m('input#email.form__input[type=text][name=email][autocomplete=off][required]'),
-                    m('span.input__error', !_isEmpty(User.error) ? User.error.errors.user[0] : null),
                 ]),
                 m('.form__group', [
                     m('label.input__label[for=password]', 'Password'),

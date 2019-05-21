@@ -2354,6 +2354,62 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Alert.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Alert.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+
+var component = {
+  view: function view(vnode) {
+    var attrs = vnode.attrs;
+
+    switch (attrs.type) {
+      case 'info':
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Info, attrs);
+        break;
+
+      case 'warn':
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Warn, attrs);
+        break;
+
+      case 'error':
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Error, attrs);
+        break;
+
+      default:
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Info, attrs);
+    }
+
+    ;
+  }
+};
+var alerts = {
+  Info: {
+    view: function view(vnode) {
+      return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-indigo-900.text-center.py-4.lg:px-4', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('[role=alert].p-2.bg-indigo-800.items-center.text-indigo-100.leading-none.lg:rounded-full.text-center', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.font-semibold.mr-2.text-left', vnode.attrs.message)));
+    }
+  },
+  Warn: {
+    view: function view(vnode) {
+      return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-yellow-700.text-center.py-4.lg:px-4', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('[role=alert].p-2.bg-yellow-600.items-center.text-indigo-100.leading-none.lg:rounded-full.lg:inline-flex', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.font-semibold.mr-2.text-left.flex-auto', vnode.attrs.message)]));
+    }
+  },
+  Error: {
+    view: function view(vnode) {
+      return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-red-900.text-center.py-4.lg:px-4', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('[role=alert].py-2.px-4.bg-red-800.items-center.text-indigo-100.leading-none.lg:rounded-full.lg:inline-flex', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.font-semibold.mr-2.text-left.flex-auto', vnode.attrs.message)]));
+    }
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
 /***/ "./resources/js/components/Copy.js":
 /*!*****************************************!*\
   !*** ./resources/js/components/Copy.js ***!
@@ -2390,13 +2446,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
 /* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
 /* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+
 
 
 
 
 var component = {
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/login][method=post]', {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_User__WEBPACK_IMPORTED_MODULE_2__["default"].error) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Alert__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      type: 'error',
+      message: _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].error.errors.user[0]
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/login][method=post]', {
       onsubmit: function onsubmit(e) {
         e.preventDefault();
         _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].login({
@@ -2406,7 +2467,7 @@ var component = {
       }
     }, [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
       value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
-    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.input__error', !lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_User__WEBPACK_IMPORTED_MODULE_2__["default"].error) ? _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].error.errors.user[0] : null)]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Sign In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=#]', 'Forgot Password?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Sign In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=#]', 'Forgot Password?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (component);
@@ -2424,11 +2485,31 @@ var component = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
 /* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
+/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+
+
+
 
 
 var component = {
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/register][method=post]', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [lodash_isempty__WEBPACK_IMPORTED_MODULE_2___default()(_models_User__WEBPACK_IMPORTED_MODULE_3__["default"].error) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Alert__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      type: 'error',
+      messsage: _models_User__WEBPACK_IMPORTED_MODULE_3__["default"].error.errors.user[0]
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/register][method=post]', {
+      onsubmit: function onsubmit(e) {
+        e.preventDefault();
+        _models_User__WEBPACK_IMPORTED_MODULE_3__["default"].create({
+          'name': e.target.elements.name.value,
+          'email': e.target.elements.email.value,
+          'password': e.target.elements.password.value,
+          'password_confirmation': e.target.elements.password_confirmation.value
+        });
+      }
+    }, [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
       value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
     }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=name]', 'Name'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#name.form__input[type=text][name=name][autocomplete=off][autofocus][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=confirmPassword]', 'Confirm Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#confirmPassword.form__input[type=password][name=password_confirmation][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Register'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=/login]', {
       oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
@@ -2520,24 +2601,34 @@ var model = {
   list: [],
   error: {},
   login: function login(data) {
+    model.current = model.error = {};
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'post',
       url: '/api/users/login',
       headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
       data: data
     }).then(function (res) {
-      localStorage.setItem('userid', res.id);
-      console.log(res);
-      location.replace('/home');
+      localStorage.setItem('user', JSON.stringify(res));
+      model.current = res;
+      mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/');
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });
   },
+  logout: function logout() {
+    model.current = {};
+    localStorage.removeItem('user');
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/login');
+  },
   fetchAll: function fetchAll() {
+    var api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/users',
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: {
+        api_token: api_token
+      }
     }).then(function (res) {
       model.list = res;
     })["catch"](function (e) {
@@ -2545,6 +2636,7 @@ var model = {
     });
   },
   fetch: function fetch(id) {
+    data.api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/users/' + id,
@@ -2563,11 +2655,13 @@ var model = {
       data: data
     }).then(function (res) {
       model.current = res;
+      if (!_isEmpty(model.current)) mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/login');
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });
   },
   update: function update(data, id) {
+    data.api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'put',
       url: '/api/users/' + id,
@@ -2583,7 +2677,10 @@ var model = {
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'delete',
       url: '/api/users/' + id,
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: {
+        api_token: window.getUserApiToken()
+      }
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });

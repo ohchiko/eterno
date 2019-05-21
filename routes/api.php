@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::middleware('auth:api')->group(function () {
     Route::apiResources([
         'books' => 'BookController',
@@ -24,4 +20,6 @@ Route::middleware('auth:api')->group(function () {
     ]);
 });
 
-Route::middleware('guest')->post('/users/login', 'Auth\LoginController@authenticate')->name('users.login');
+Route::post('/users', 'UserController@store')->name('users.store');
+
+Route::middleware('guest:api')->post('/users/login', 'UserController@login')->name('users.login');

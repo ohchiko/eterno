@@ -2364,16 +2364,33 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.js");
-/* harmony import */ var _components_Books__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Books */ "./resources/js/components/Books.js");
-/* harmony import */ var _components_Account__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Account */ "./resources/js/components/Account.js");
-/* harmony import */ var _components_BookNew__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/BookNew */ "./resources/js/components/BookNew.js");
-/* harmony import */ var _components_BookView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/BookView */ "./resources/js/components/BookView.js");
+/* harmony import */ var _components_Nav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Nav */ "./resources/js/components/Nav.js");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.js");
+/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
+/* harmony import */ var _components_Welcome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Welcome */ "./resources/js/components/Welcome.js");
+/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.js");
+/* harmony import */ var _components_Books__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Books */ "./resources/js/components/Books.js");
+/* harmony import */ var _components_Account__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Account */ "./resources/js/components/Account.js");
+/* harmony import */ var _components_BookNew__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/BookNew */ "./resources/js/components/BookNew.js");
+/* harmony import */ var _components_BookView__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/BookView */ "./resources/js/components/BookView.js");
+/* harmony import */ var _components_Users__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Users */ "./resources/js/components/Users.js");
 
 
 
 
 
+
+
+
+
+
+
+
+window.getUserApiToken = function () {
+  var user = JSON.parse(localStorage.getItem('user'));
+  if (user !== null) return user.api_token;
+  return false;
+};
 
 var headers = [];
 headers['X-Requested-With'] = 'XMLHttpRequest';
@@ -2388,13 +2405,17 @@ if (token) {
 mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults = {
   headers: headers
 };
-mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.prefix('#');
+mithril__WEBPACK_IMPORTED_MODULE_0__["default"].mount(document.body.querySelector('nav'), _components_Nav__WEBPACK_IMPORTED_MODULE_1__["default"]);
 mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route(document.body.querySelector('main'), '/', {
-  '/': _components_Home__WEBPACK_IMPORTED_MODULE_1__["default"],
-  '/books': _components_Books__WEBPACK_IMPORTED_MODULE_2__["default"],
-  '/account': _components_Account__WEBPACK_IMPORTED_MODULE_3__["default"],
-  '/books/new': _components_BookNew__WEBPACK_IMPORTED_MODULE_4__["default"],
-  '/books/:id': _components_BookView__WEBPACK_IMPORTED_MODULE_5__["default"]
+  '/': _components_Home__WEBPACK_IMPORTED_MODULE_5__["default"],
+  '/welcome': _components_Welcome__WEBPACK_IMPORTED_MODULE_4__["default"],
+  '/login': _components_Login__WEBPACK_IMPORTED_MODULE_2__["default"],
+  '/register': _components_Register__WEBPACK_IMPORTED_MODULE_3__["default"],
+  '/books': _components_Books__WEBPACK_IMPORTED_MODULE_6__["default"],
+  '/account': _components_Account__WEBPACK_IMPORTED_MODULE_7__["default"],
+  '/books/new': _components_BookNew__WEBPACK_IMPORTED_MODULE_8__["default"],
+  '/books/:id': _components_BookView__WEBPACK_IMPORTED_MODULE_9__["default"],
+  '/users': _components_Users__WEBPACK_IMPORTED_MODULE_10__["default"]
 });
 
 /***/ }),
@@ -2418,10 +2439,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var component = {
-  oninit: function oninit() {//User.fetch(document.body.querySelector('#userId').innerHTML);
-  },
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title', document.body.querySelector('#userName').innerHTML + '\'s Account'), lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content', {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title', _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current.name + '\'s Account'), lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content', {
       onsubmit: function onsubmit(e) {
         e.preventDefault();
         _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].update({
@@ -2435,6 +2454,62 @@ var component = {
     })]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required][readonly]', {
       value: _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].current.email
     })]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(''), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Save Changes')])])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
+/***/ "./resources/js/components/Alert.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Alert.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+
+var component = {
+  view: function view(vnode) {
+    var attrs = vnode.attrs;
+
+    switch (attrs.type) {
+      case 'info':
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Info, attrs);
+        break;
+
+      case 'warn':
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Warn, attrs);
+        break;
+
+      case 'error':
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Error, attrs);
+        break;
+
+      default:
+        return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(alerts.Info, attrs);
+    }
+
+    ;
+  }
+};
+var alerts = {
+  Info: {
+    view: function view(vnode) {
+      return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-indigo-900.text-center.py-4.lg:px-4', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('[role=alert].p-2.bg-indigo-800.items-center.text-indigo-100.leading-none.lg:rounded-full.text-center', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.font-semibold.mr-2.text-left', vnode.attrs.message)));
+    }
+  },
+  Warn: {
+    view: function view(vnode) {
+      return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-yellow-700.text-center.py-4.lg:px-4', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('[role=alert].p-2.bg-yellow-600.items-center.text-indigo-100.leading-none.lg:rounded-full.lg:inline-flex', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.font-semibold.mr-2.text-left.flex-auto', vnode.attrs.message)]));
+    }
+  },
+  Error: {
+    view: function view(vnode) {
+      return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-red-900.text-center.py-4.lg:px-4', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('[role=alert].py-2.px-4.bg-red-800.items-center.text-indigo-100.leading-none.lg:rounded-full.lg:inline-flex', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.font-semibold.mr-2.text-left.flex-auto', vnode.attrs.message)]));
+    }
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (component);
@@ -2534,6 +2609,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_Book__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/Book */ "./resources/js/models/Book.js");
 /* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
 /* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
+
 
 
 
@@ -2543,7 +2620,7 @@ var component = {
     _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].fetchAll();
   },
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex.items-center', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title.flex-grow', document.body.querySelector('#userName').innerHTML + '\'s Books'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.bg-blue-500.text-white.no-underline.rounded.py-1.px-3.font-bold[href=/books/new]', {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex.items-center', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title.flex-grow', _models_User__WEBPACK_IMPORTED_MODULE_4__["default"].current.name + '\'s Books'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.bg-blue-500.text-white.no-underline.rounded.py-1.px-3.font-bold[href=/books/new]', {
       oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
     }, 'New')]), lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].list) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex.flex-wrap.items-center.justify-around', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].list.map(function (book) {
       return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('img.card__header'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__body', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__title', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/books/' + book.id + ']', {
@@ -2589,11 +2666,206 @@ var component = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
 /* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
+/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+
 
 
 var component = {
   view: function view() {
-    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', []), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [//m(Alert, { type: 'error' }),
+    Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-3xl.font-bold.text-gray-500', 'Home sweet home!')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
+/***/ "./resources/js/components/Login.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Login.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+/* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+
+
+
+
+
+var component = {
+  view: function view() {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_User__WEBPACK_IMPORTED_MODULE_2__["default"].error) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Alert__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      type: 'error',
+      message: _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].error.errors.user[0]
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/login][method=post]', {
+      onsubmit: function onsubmit(e) {
+        e.preventDefault();
+        _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].login({
+          email: e.target.elements.email.value,
+          password: e.target.elements.password.value
+        });
+      }
+    }, [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
+      value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Sign In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=#]', 'Forgot Password?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
+/***/ "./resources/js/components/Nav.js":
+/*!****************************************!*\
+  !*** ./resources/js/components/Nav.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+var component = {
+  oninit: function oninit() {
+    if (window.getUserApiToken()) {
+      _models_User__WEBPACK_IMPORTED_MODULE_1__["default"].current = JSON.parse(localStorage.getItem('user'));
+    }
+  },
+  view: function view() {
+    return [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex.items-center.flex-shrink-0 text-gray-600.mr-6', [mithril__WEBPACK_IMPORTED_MODULE_0__["default"].trust('<svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span.font-semibold.text-xl.tracking-widest.uppercase', 'Eterno')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.block.flex-grow.lg:flex.lg:items-center.lg:w-auto', [!lodash_isempty__WEBPACK_IMPORTED_MODULE_2___default()(_models_User__WEBPACK_IMPORTED_MODULE_1__["default"].current) ? [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.text-sm.lg:flex-grow', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/users].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Users'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/logs].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Logs'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/books].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Books'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/account].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Account')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span#userName.inline-block.text-xs.text-gray-700', 'Logged in as: ' + _models_User__WEBPACK_IMPORTED_MODULE_1__["default"].current.name), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('span#userEmail.inline-block.text-xs.text-gray-700'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/logout].inline-block.text-xs.mx-2', {
+      onclick: function onclick(e) {
+        e.preventDefault();
+        _models_User__WEBPACK_IMPORTED_MODULE_1__["default"].logout();
+      }
+    }, 'Logout')])] : [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex-grow'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.text-sm', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/login].mt-4.inline-block.lg:mt-0.text-gray-700.mr-4', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Login'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/register].mt-4.inline-block.lg:mt-0.text-gray-700.mr-4', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Register')])]])];
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
+/***/ "./resources/js/components/Register.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Register.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+/* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
+/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+
+
+
+
+
+var component = {
+  view: function view() {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [lodash_isempty__WEBPACK_IMPORTED_MODULE_2___default()(_models_User__WEBPACK_IMPORTED_MODULE_3__["default"].error) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Alert__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      type: 'error',
+      messsage: _models_User__WEBPACK_IMPORTED_MODULE_3__["default"].error.errors.user[0]
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('form.form.content[action=/register][method=post]', {
+      onsubmit: function onsubmit(e) {
+        e.preventDefault();
+        _models_User__WEBPACK_IMPORTED_MODULE_3__["default"].create({
+          'name': e.target.elements.name.value,
+          'email': e.target.elements.email.value,
+          'password': e.target.elements.password.value,
+          'password_confirmation': e.target.elements.password_confirmation.value
+        });
+      }
+    }, [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
+      value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=name]', 'Name'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#name.form__input[type=text][name=name][autocomplete=off][autofocus][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=confirmPassword]', 'Confirm Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#confirmPassword.form__input[type=password][name=password_confirmation][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Register'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=/login]', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Have account?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
+/***/ "./resources/js/components/Users.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Users.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+/* harmony import */ var _Copy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Copy */ "./resources/js/components/Copy.js");
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/User */ "./resources/js/models/User.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.isempty */ "./node_modules/lodash.isempty/index.js");
+/* harmony import */ var lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isempty__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+var component = {
+  oninit: function oninit() {
+    //User.fetch(document.body.querySelector('#userId').innerHTML);
+    _models_User__WEBPACK_IMPORTED_MODULE_2__["default"].fetchAll();
+  },
+  view: function view() {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.content__title', 'Users List')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (component);
+
+/***/ }),
+
+/***/ "./resources/js/components/Welcome.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Welcome.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ "./node_modules/mithril/mithril.mjs");
+
+var component = {
+  view: function view() {
+    return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-xs.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.bg-white.shadow-md.rounded.px-8.pt-6.pb-8.mb-4', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-center.text-2xl.text-gray-700.mb-4', 'Welcome'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-center.text-md.text-gray-500.mb-8', 'Let your yearbook go online!'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.flex.items-center.justify-around', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/login].font-bold', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Log In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/register].font-bold', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Register')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-center.text-gray-500.text-xs', [mithril__WEBPACK_IMPORTED_MODULE_0__["default"].trust('&copy;'), '2019 ', Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a[href=/]', {
+      oncreate: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.link
+    }, 'Eterno'), '. All rights reserved'])]);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (component);
@@ -2619,7 +2891,10 @@ var model = {
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/books',
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: {
+        api_token: window.getUserApiToken()
+      }
     }).then(function (res) {
       model.list = res;
     })["catch"](function (e) {
@@ -2630,7 +2905,10 @@ var model = {
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/books/' + id,
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: {
+        api_token: window.getUserApiToken()
+      }
     }).then(function (res) {
       model.current = res;
     })["catch"](function (e) {
@@ -2638,6 +2916,7 @@ var model = {
     });
   },
   create: function create(data) {
+    data.append('api_token', window.getUserApiToken());
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'post',
       url: '/api/books',
@@ -2650,6 +2929,7 @@ var model = {
     });
   },
   update: function update(data, id) {
+    data.api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'put',
       url: '/api/books/' + id,
@@ -2665,7 +2945,10 @@ var model = {
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'delete',
       url: '/api/books/' + id,
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: {
+        api_token: window.getUserApiToken()
+      }
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });
@@ -2691,24 +2974,34 @@ var model = {
   list: [],
   error: {},
   login: function login(data) {
+    model.current = model.error = {};
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'post',
       url: '/api/users/login',
       headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
       data: data
     }).then(function (res) {
-      localStorage.setItem('userid', res.id);
-      console.log(res);
-      location.replace('/home');
+      localStorage.setItem('user', JSON.stringify(res));
+      model.current = res;
+      mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/');
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });
   },
+  logout: function logout() {
+    model.current = {};
+    localStorage.removeItem('user');
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/login');
+  },
   fetchAll: function fetchAll() {
+    var api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/users',
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: {
+        api_token: api_token
+      }
     }).then(function (res) {
       model.list = res;
     })["catch"](function (e) {
@@ -2716,6 +3009,7 @@ var model = {
     });
   },
   fetch: function fetch(id) {
+    data.api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/users/' + id,
@@ -2734,11 +3028,13 @@ var model = {
       data: data
     }).then(function (res) {
       model.current = res;
+      if (!_isEmpty(model.current)) mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/login');
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });
   },
   update: function update(data, id) {
+    data.api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'put',
       url: '/api/users/' + id,
@@ -2754,7 +3050,10 @@ var model = {
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'delete',
       url: '/api/users/' + id,
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
+      data: {
+        api_token: window.getUserApiToken()
+      }
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });
