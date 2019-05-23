@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
 
+    protected $columns = [
+        'id', 'name', 'email', 'email_verified_at', 'password', 'api_token', 'admin', 'remember_token', 'created_at', 'updated_at', 'deleted_at',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -48,5 +52,10 @@ class User extends Authenticatable
     public function books()
     {
         return $this->hasMany(Book::class);
+    }
+
+    public function scopeExclude($query, $value = [])
+    {
+        return $query->select(array_diff($this->columns, (array) $value));
     }
 }

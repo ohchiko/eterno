@@ -5,11 +5,11 @@ var model = {
     list: [],
     error: {},
     fetchAll: () => {
+        model.list = [];
         m.request({
             method: 'get',
             url: '/api/books',
             headers: m.defaults.headers,
-            data: { api_token: window.getUserApiToken() },
         })
         .then(res => {
             model.list = res;
@@ -19,11 +19,11 @@ var model = {
         });
     },
     fetch: id => {
+        model.current = {};
         m.request({
             method: 'get',
             url: '/api/books/' + id,
             headers: m.defaults.headers,
-            data: { api_token: window.getUserApiToken() },
         })
         .then(res => {
             model.current = res;
@@ -33,7 +33,7 @@ var model = {
         });
     },
     create: data => {
-        data.append('api_token', window.getUserApiToken());
+        model.current = {};
         m.request({
             method: 'post',
             url: '/api/books',
@@ -48,7 +48,7 @@ var model = {
         });
     },
     update: (data, id) => {
-        data.api_token = window.getUserApiToken();
+        model.current = {};
         m.request({
             method: 'put',
             url: '/api/books/' + id,
@@ -63,11 +63,11 @@ var model = {
         });
     },
     remove: id => {
+        model.current = {};
         m.request({
             method: 'delete',
             url: '/api/books/' + id,
             headers: m.defaults.headers,
-            data: { api_token: window.getUserApiToken() },
         })
         .catch(e => {
             model.error = JSON.parse(e.message);

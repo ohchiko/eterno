@@ -7664,7 +7664,6 @@ form.form .form__link {
 }
 
 .card {
-  max-width: 24rem;
   border-radius: 0.25rem;
   overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -7707,6 +7706,20 @@ form.form .form__link {
   font-weight: 600;
   color: #4a5568;
   margin-right: 0.5rem;
+}
+
+.table th {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.table td {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.table tr:nth-child(even) {
+  background-color: #edf2f7;
 }
 
 @media (min-width: 640px){

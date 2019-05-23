@@ -10,7 +10,7 @@ import BookNew from "./components/BookNew"
 import BookView from "./components/BookView"
 import Users from "./components/Users"
 
-window.getUserApiToken = function () {
+let getUserApiToken = function () {
     let user = JSON.parse(localStorage.getItem('user'));
     if (user !== null)
         return user.api_token;

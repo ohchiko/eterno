@@ -10,6 +10,15 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function getAuth(Request $request)
+    {
+        $token = explode(' ', $request->header('Authorization'))[1];
+
+        return User::where('api_token', $token)
+            ->exclude(['api_token', 'remember_token', 'email_verified_at'])
+            ->firstOrFail();
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -19,7 +28,7 @@ class UserController extends Controller
 
         $user = User::where('email', $request->email)->first();
         if ($user !== null && Hash::check($request->password, $user->password))
-            return $user->only(['name', 'email', 'id', 'api_token']);
+            return $user->only(['api_token']);
         else
             return response()->json([
                 'message' => 'Unauthorized.',

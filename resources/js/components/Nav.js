@@ -3,10 +3,9 @@ import User from "../models/User"
 import _isEmpty from "lodash.isempty"
 
 var component = {
-    oninit: () => {
-        if (window.getUserApiToken()) {
-            User.current = JSON.parse(localStorage.getItem('user'));
-        }
+    oncreate: () => {
+        if (localStorage.getItem('user') !== null)
+            User.auth();
     },
     view: () => {
         return [
@@ -16,9 +15,10 @@ var component = {
             ]),
             m('.w-full.block.flex-grow.lg:flex.lg:items-center.lg:w-auto', [
                 !_isEmpty(User.current) ? [
-                    m('.text-sm.lg:flex-grow', [
+                    m('.text-sm.lg:flex-grow', User.current.admin ? [
                         m('a[href=/users].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', { oncreate: m.route.link }, 'Users'),
                         m('a[href=/logs].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', { oncreate: m.route.link }, 'Logs'),
+                    ] : [
                         m('a[href=/books].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', { oncreate: m.route.link }, 'Books'),
                         m('a[href=/account].mt-4.inline-block.lg:mt-0.text-gray-500.mr-4', { oncreate: m.route.link }, 'Account'),
                     ]),

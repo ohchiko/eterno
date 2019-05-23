@@ -23,7 +23,7 @@ var component = {
                 }),
                 m('.form__group', [
                     m('label.input__label[for=email]', 'Email'),
-                    m('input#email.form__input[type=text][name=email][autocomplete=off][required]'),
+                    m('input#email.form__input[type=text][name=email][autocomplete=off][required][autofocus]'),
                 ]),
                 m('.form__group', [
                     m('label.input__label[for=password]', 'Password'),

@@ -76,7 +76,7 @@ form.form {
 }
 
 .card {
-    @apply max-w-sm rounded overflow-hidden shadow-lg my-6;
+    @apply rounded overflow-hidden shadow-lg my-6;
 
     .card__header {
         @apply w-full;
@@ -96,5 +96,19 @@ form.form {
 
     .card__tag {
         @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2;
+    }
+}
+
+.table {
+    th {
+        @apply py-2;
+    }
+
+    td {
+        @apply p-2 text-center;
+    }
+
+    tr:nth-child(even) {
+        @apply bg-gray-200;
     }
 }

@@ -4,6 +4,21 @@ var model = {
     current: {},
     list: [],
     error: {},
+    auth: () => {
+        model.current = {};
+        m.defaults.headers['Authorization'] = 'Bearer ' + JSON.parse(localStorage.user).api_token;
+        m.request({
+            method: 'get',
+            url: '/api/users/auth',
+            headers: m.defaults.headers,
+        })
+            .then(res => {
+                model.current = res;
+            })
+            .catch(e => {
+                model.error = JSON.parse(e.message);
+            });
+    },
     login: data => {
         model.current = model.error = {};
         m.request({
@@ -12,27 +27,26 @@ var model = {
             headers: m.defaults.headers,
             data,
         })
-        .then(res => {
-            localStorage.setItem('user', JSON.stringify(res));
-            model.current = res;
-            m.route.set('/');
-        })
-        .catch(e => {
-            model.error = JSON.parse(e.message);
-        });
+            .then(res => {
+                localStorage.setItem('user', JSON.stringify(res));
+                model.auth();
+                m.route.set('/');
+            })
+            .catch(e => {
+                model.error = JSON.parse(e.message);
+            });
     },
     logout: () => {
         model.current = {};
+        m.defaults.headers['Authorization'] = null;
         localStorage.removeItem('user');
         m.route.set('/login');
     },
     fetchAll: () => {
-        let api_token = window.getUserApiToken();
         m.request({
             method: 'get',
             url: '/api/users',
             headers: m.defaults.headers,
-            data: { api_token },
         })
             .then(res => {
                 model.list = res;
@@ -42,7 +56,6 @@ var model = {
             });
     },
     fetch: id => {
-        data.api_token = window.getUserApiToken();
         m.request({
             method: 'get',
             url: '/api/users/' + id,
@@ -73,7 +86,6 @@ var model = {
             });
     },
     update: (data, id) => {
-        data.api_token = window.getUserApiToken();
         m.request({
             method: 'put',
             url: '/api/users/' + id,
@@ -92,7 +104,6 @@ var model = {
             method: 'delete',
             url: '/api/users/' + id,
             headers: m.defaults.headers,
-            data: { api_token: window.getUserApiToken() }
         })
             .catch(e => {
                 model.error = JSON.parse(e.message);

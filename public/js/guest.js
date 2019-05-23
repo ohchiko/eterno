@@ -2467,7 +2467,7 @@ var component = {
       }
     }, [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input[type=hidden][name=_token]', {
       value: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['X-CSRF-TOKEN']
-    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Sign In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=#]', 'Forgot Password?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
+    }), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=email]', 'Email'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#email.form__input[type=text][name=email][autocomplete=off][required][autofocus]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__group', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('label.input__label[for=password]', 'Password'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('input#password.form__input[type=password][name=password][required]')]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.form__footer', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('button.form__button[type=submit]', 'Sign In'), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('a.form__link[href=#]', 'Forgot Password?')])]), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])(_Copy__WEBPACK_IMPORTED_MODULE_1__["default"])]);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (component);
@@ -2600,6 +2600,19 @@ var model = {
   current: {},
   list: [],
   error: {},
+  auth: function auth() {
+    model.current = {};
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['Authorization'] = 'Bearer ' + JSON.parse(localStorage.user).api_token;
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+      method: 'get',
+      url: '/api/users/auth',
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
+    }).then(function (res) {
+      model.current = res;
+    })["catch"](function (e) {
+      model.error = JSON.parse(e.message);
+    });
+  },
   login: function login(data) {
     model.current = model.error = {};
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
@@ -2609,7 +2622,7 @@ var model = {
       data: data
     }).then(function (res) {
       localStorage.setItem('user', JSON.stringify(res));
-      model.current = res;
+      model.auth();
       mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/');
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
@@ -2617,18 +2630,15 @@ var model = {
   },
   logout: function logout() {
     model.current = {};
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['Authorization'] = null;
     localStorage.removeItem('user');
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/login');
   },
   fetchAll: function fetchAll() {
-    var api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/users',
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
-      data: {
-        api_token: api_token
-      }
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
     }).then(function (res) {
       model.list = res;
     })["catch"](function (e) {
@@ -2636,7 +2646,6 @@ var model = {
     });
   },
   fetch: function fetch(id) {
-    data.api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/users/' + id,
@@ -2661,7 +2670,6 @@ var model = {
     });
   },
   update: function update(data, id) {
-    data.api_token = window.getUserApiToken();
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'put',
       url: '/api/users/' + id,
@@ -2677,10 +2685,7 @@ var model = {
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'delete',
       url: '/api/users/' + id,
-      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
-      data: {
-        api_token: window.getUserApiToken()
-      }
+      headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers
     })["catch"](function (e) {
       model.error = JSON.parse(e.message);
     });
