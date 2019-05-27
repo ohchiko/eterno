@@ -6,7 +6,7 @@ var model = {
     error: {},
     auth: () => {
         model.current = {};
-        m.defaults.headers['Authorization'] = 'Bearer ' + JSON.parse(localStorage.user).api_token;
+        m.defaults.headers['Authorization'] = 'Bearer ' + JSON.parse(sessionStorage.user).api_token;
         m.request({
             method: 'get',
             url: '/api/users/auth',
@@ -28,7 +28,7 @@ var model = {
             data,
         })
             .then(res => {
-                localStorage.setItem('user', JSON.stringify(res));
+                sessionStorage.setItem('user', JSON.stringify(res));
                 model.auth();
                 m.route.set('/');
             })
@@ -39,7 +39,7 @@ var model = {
     logout: () => {
         model.current = {};
         m.defaults.headers['Authorization'] = null;
-        localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
         m.route.set('/login');
     },
     fetchAll: () => {

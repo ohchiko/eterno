@@ -4,7 +4,7 @@ import _isEmpty from "lodash.isempty"
 
 var component = {
     oncreate: () => {
-        if (localStorage.getItem('user') !== null)
+        if (sessionStorage.getItem('user') !== null)
             User.auth();
     },
     view: () => {

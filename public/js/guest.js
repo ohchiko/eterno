@@ -2602,7 +2602,7 @@ var model = {
   error: {},
   auth: function auth() {
     model.current = {};
-    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['Authorization'] = 'Bearer ' + JSON.parse(localStorage.user).api_token;
+    mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['Authorization'] = 'Bearer ' + JSON.parse(sessionStorage.user).api_token;
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].request({
       method: 'get',
       url: '/api/users/auth',
@@ -2621,7 +2621,7 @@ var model = {
       headers: mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers,
       data: data
     }).then(function (res) {
-      localStorage.setItem('user', JSON.stringify(res));
+      sessionStorage.setItem('user', JSON.stringify(res));
       model.auth();
       mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/');
     })["catch"](function (e) {
@@ -2631,7 +2631,7 @@ var model = {
   logout: function logout() {
     model.current = {};
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.headers['Authorization'] = null;
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     mithril__WEBPACK_IMPORTED_MODULE_0__["default"].route.set('/login');
   },
   fetchAll: function fetchAll() {
