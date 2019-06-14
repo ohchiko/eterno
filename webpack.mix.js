@@ -15,7 +15,9 @@ const tailwindcss = require('tailwindcss');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/guest.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .copyDirectory('resources/js/pdfjs', 'public/js/pdfjs')
+	.copy('resources/js/pdfjs/viewer.html', 'public/js/pdfjs/viewer.html')
+	.copy('node_modules/pdfjs-dist/build/pdf.worker.js', 'public/js/pdfjs/pdf.worker.js')
+	.copy('node_modules/pdfjs-dist/build/pdf.js', 'public/js/pdfjs/pdf.js')
     .options({
         processCssUrls: false,
         postCss: [ tailwindcss('./tailwind.config.js') ]
