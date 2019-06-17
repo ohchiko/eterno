@@ -2,6 +2,7 @@ import m from "mithril"
 import Copy from "./Copy"
 import Book from "../models/Book"
 import _isEmpty from "lodash.isempty"
+var pdfjsLib = require('pdfjs-dist');
 
 var component = {
     oninit: vnode => {
@@ -9,49 +10,52 @@ var component = {
     },
     view: () => {
         return m('.w-full.max-w-5xl.mx-auto', [
-            m('.content.flex.flex-wrap.justify-between', _isEmpty(Book.current) ? null : [
-                m('.card', [
+            m('.content', _isEmpty(Book.current) ? null : [
+                m('.card.mx-auto', [
                     m('.card__body', [
                         m('p.card__title', Book.current.name),
                         m('p.text-gray-700.text-sm.mb-4', Book.current.description),
                         m('p.bg-gray-200.rounded-full.inline-block.py-1.px-3.text-xs.text-gray-700.font-bold', Book.current.user.name),
                     ]),
                 ]),
-                _isEmpty(Book.current) ? null : m('.card.flex-grow', [
-                    m('iframe#pdfViewer.w-full', {
-                        src: 'js/pdfjs/viewer.html',
+                _isEmpty(Book.current) ? null : m('.card.bg-gray-400', {
+                    style: { overflow: 'auto' }
+                }, [
+                    m('.card__body', {
                         oncreate: vnode => {
-                            var raw = atob(Book.current.file),
-                                uint8Array = new Uint8Array(raw.length),
-                                pdfjsFrame = vnode.dom;
-                            
-                            for (let i = 0; i < raw.length; i++) {
-                                uint8Array[i] = raw.charCodeAt(i);
+                            pdfjsLib.GlobalWorkerOptions.workerSrc = './js/pdfjs/pdf.worker.js';
+                            console.log(pdfjsLib);
+                            var pdfData = atob(Book.current.file),
+                                pdfFrame = vnode.dom,
+                                loadingTask = pdfjsLib.getDocument({ data: pdfData });
+
+                            var renderPage = page => {
+                                var scale = 1.5,
+                                    viewport = page.getViewport(scale),
+                                    canvas = document.createElement('canvas'),
+                                    ctx = canvas.getContext('2d'),
+                                    renderContext = {
+                                        canvasContext: ctx,
+                                        viewport: viewport,
+                                    };
+
+                                canvas.height = viewport.height;
+                                canvas.width = viewport.width;
+                                canvas.classList.add('my-4');
+                                canvas.classList.add('mx-auto');
+
+                                pdfFrame.appendChild(canvas);
+
+                                page.render(renderContext);
+                            };
+
+                            var renderPages = pdfDoc => {
+                                for (var num = 1; num <= pdfDoc.numPages; num++)
+                                    pdfDoc.getPage(num).then(renderPage);
                             }
 
-							pdfjsLib.GlobalWorkerOptions.workerSrc = './js/pdfjs/pdf.worker.js';
-                            var pdfData = uint8Array;
-							var loadingTask = pdfjsLib.getDocument(pdfData);
-							loadingTask.promise.then(function (pdfDocument) {
-								// Request a first page
-								return pdfDocument.getPage(1).then(function (pdfPage) {
-									// Display page on the existing canvas with 100% scale.
-									var viewport = pdfPage.getViewport({ scale: 1.0, });
-									var canvas = pdfjsFrame.contentWindow.document.getElementById('theCanvas');
-console.log(canvas);
-									canvas.width = viewport.width;
-									canvas.height = viewport.height;
-									var ctx = canvas.getContext('2d');
-									var renderTask = pdfPage.render({
-										canvasContext: ctx,
-										viewport: viewport,
-									});
-									return renderTask.promise;
-								});
-							}).catch(function (reason) {
-								console.error('Error: ' + reason);
-							});
-                        },
+                            loadingTask.promise.then(renderPages);
+                        }
                     }),
                 ]),
             ]),

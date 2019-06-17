@@ -4,5 +4,6 @@
     "/js/guest.js": "/js/guest.js",
     "/js/pdfjs/viewer.html": "/js/pdfjs/viewer.html",
     "/js/pdfjs/pdf.worker.js": "/js/pdfjs/pdf.worker.js",
-    "/js/pdfjs/pdf.js": "/js/pdfjs/pdf.js"
+    "/js/pdfjs/pdf.js": "/js/pdfjs/pdf.js",
+    "/vendors~pdfjsWorker.js": "/vendors~pdfjsWorker.js"
 }
