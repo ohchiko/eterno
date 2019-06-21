@@ -24063,7 +24063,7 @@ var SVGGraphics = function SVGGraphics() {
         } else {
           input = new Buffer(literals);
         }
-        var output = __webpack_require__(/*! zlib */ 2).deflateSync(input, { level: 9 });
+        var output = __webpack_require__(/*! zlib */ 1).deflateSync(input, { level: 9 });
         return output instanceof Uint8Array ? output : new Uint8Array(output);
       } catch (e) {
         (0, _util.warn)('Not compressing PNG because zlib.deflateSync is unavailable: ' + e);
@@ -25084,9 +25084,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var fs = __webpack_require__(/*! fs */ 3);
-var http = __webpack_require__(/*! http */ 4);
-var https = __webpack_require__(/*! https */ 5);
+var fs = __webpack_require__(/*! fs */ 2);
+var http = __webpack_require__(/*! http */ 3);
+var https = __webpack_require__(/*! https */ 4);
 var url = __webpack_require__(/*! url */ "./node_modules/url/url.js");
 
 var fileUriRegex = /^file:\/\/\/[a-zA-Z]:\//;
@@ -28221,7 +28221,8 @@ var component = {
   view: function view() {
     return Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-full.max-w-5xl.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.content', lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card.mx-auto', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__body', [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.card__title', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.name), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.text-gray-700.text-sm.mb-4', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.description), Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('p.bg-gray-200.rounded-full.inline-block.py-1.px-3.text-xs.text-gray-700.font-bold', _models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current.user.name)])]), lodash_isempty__WEBPACK_IMPORTED_MODULE_3___default()(_models_Book__WEBPACK_IMPORTED_MODULE_2__["default"].current) ? null : Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card.bg-gray-400', {
       style: {
-        overflow: 'auto'
+        overflow: 'auto',
+        maxHeight: '300px'
       }
     }, [Object(mithril__WEBPACK_IMPORTED_MODULE_0__["default"])('.card__body', {
       oncreate: function oncreate(vnode) {
@@ -28766,7 +28767,7 @@ module.exports = __webpack_require__(/*! /home/gregorio/Documents/codes/eterno/r
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**********************!*\
   !*** zlib (ignored) ***!
   \**********************/
@@ -28777,7 +28778,7 @@ module.exports = __webpack_require__(/*! /home/gregorio/Documents/codes/eterno/r
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!********************!*\
   !*** fs (ignored) ***!
   \********************/
@@ -28788,7 +28789,7 @@ module.exports = __webpack_require__(/*! /home/gregorio/Documents/codes/eterno/r
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!**********************!*\
   !*** http (ignored) ***!
   \**********************/
@@ -28799,7 +28800,7 @@ module.exports = __webpack_require__(/*! /home/gregorio/Documents/codes/eterno/r
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!***********************!*\
   !*** https (ignored) ***!
   \***********************/

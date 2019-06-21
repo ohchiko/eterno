@@ -19,7 +19,7 @@ var component = {
                     ]),
                 ]),
                 _isEmpty(Book.current) ? null : m('.card.bg-gray-400', {
-                    style: { overflow: 'auto' }
+                    style: { overflow: 'auto', maxHeight: '300px' }
                 }, [
                     m('.card__body', {
                         oncreate: vnode => {
