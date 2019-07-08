@@ -1,0 +1,9 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/js/guest.js": "/js/guest.js",
+    "/vendors~pdfjsWorker.js": "/vendors~pdfjsWorker.js",
+    "/js/pdfjs/viewer.html": "/js/pdfjs/viewer.html",
+    "/js/pdfjs/pdf.worker.js": "/js/pdfjs/pdf.worker.js",
+    "/js/pdfjs/pdf.js": "/js/pdfjs/pdf.js"
+}
