@@ -42,6 +42,7 @@ var model = {
         })
         .then(res => {
             model.current = res;
+            m.route.set('/books/' + model.current.id);
         })
         .catch(e => {
             model.error = JSON.parse(e.message);

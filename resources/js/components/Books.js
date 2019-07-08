@@ -15,8 +15,10 @@ var component = {
                     m('p.content__title.flex-grow', User.current.name + '\'s Books'),
                     m('a.bg-blue-500.text-white.no-underline.rounded.py-1.px-3.font-bold[href=/books/new]', { oncreate: m.route.link }, 'New'),
                 ]),
-                _isEmpty(Book.list) ? null : m('.flex.flex-wrap.items-center.justify-around',
-                    Book.list.map(book => m('.card', [
+                _isEmpty(Book.list) ? null : m('.flex.flex-wrap.items-center.justify-start',
+                    Book.list.map(book => m('.card.flex-none', {
+                        style: { flexBasis: '25%' }
+                    }, [
                         m('img.card__header'),
                         m('.card__body', [
                             m('.card__title',

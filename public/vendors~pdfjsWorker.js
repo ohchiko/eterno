@@ -1,4 +1,13 @@
-/**
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~pdfjsWorker"],{
+
+/***/ "./node_modules/pdfjs-dist/build/pdf.worker.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/pdfjs-dist/build/pdf.worker.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {/**
  * @licstart The following is the entire license notice for the
  * Javascript code in this page
  *
@@ -21,14 +30,9 @@
  */
 
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
+	if(true)
 		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define("pdfjs-dist/build/pdf.worker", [], factory);
-	else if(typeof exports === 'object')
-		exports["pdfjs-dist/build/pdf.worker"] = factory();
-	else
-		root["pdfjs-dist/build/pdf.worker"] = root.pdfjsWorker = factory();
+	else {}
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -47055,3 +47059,8 @@ exports.MessageHandler = MessageHandler;
 /******/ ]);
 });
 //# sourceMappingURL=pdf.worker.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ })
+
+}]);
