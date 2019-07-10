@@ -13,6 +13,8 @@ Account creation will be managed by an administrator.
 * composer
 
 
+### Installation
+
 Clone the repository:
 
 ```sh
@@ -64,7 +66,7 @@ $ php artisan migrate
 You may create the administrator account manually from the database client. (Turning the `admin` field to `1` will enabled the administrator privilege to that account).
 
 
-Once done, the package is ready to use.
+Once done, the application is ready to use.
 
 
 ## Support
