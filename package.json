@@ -27,5 +27,5 @@
         "lodash.isempty": "^4.4.0",
         "mithril": "^2.0.0-rc.4"
     },
-    "version": "1.0.2"
+    "version": "1.0.3"
 }
