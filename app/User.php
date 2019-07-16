@@ -49,6 +49,12 @@ class User extends Authenticatable
         return $this->admin;
     }
 
+    public function promoteAdmin()
+    {
+        $this->admin = 1;
+        return $this->save();
+    }
+
     public function books()
     {
         return $this->hasMany(Book::class);
