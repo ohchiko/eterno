@@ -74,6 +74,7 @@ class AdministratorMakeCommand extends Command
                 ]);
 
                 $user->promoteAdmin();
+                $user->assignRole('admin');
 
                 $progressBar->finish();
                 $this->info("\n\nAn administrator account was created.");

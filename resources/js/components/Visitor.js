@@ -7,12 +7,12 @@ import _filter from "lodash.filter"
 var component = {
     oninit: () => {
         //User.fetch(document.body.querySelector('#userId').innerHTML);
-        User.fetchAll();
+        User.fetchVisitor();
     },
     view: () => {
         return _isEmpty(User.list) ? null : m('.w-full.max-w-5xl.mx-auto', [
             m('.content', [
-                m('p.content__title', 'Users List'),
+                m('p.content__title', 'Visitor List'),
                 m('.flex.justify-around', [
                     m('.card.max-w-3xl',
                         m('table.table.w-full.mx-auto.text-gray-700', [
@@ -20,7 +20,6 @@ var component = {
                                 m('th', '#'),
                                 m('th', 'Name'),
                                 m('th', 'Email'),
-                                m('th', 'Role'),
                                 m('th', 'Registered At'),
                             ]),
                             User.list.map((user, id) => {
@@ -28,7 +27,6 @@ var component = {
                                     m('td', (id + 1) + '.'),
                                     m('td', user.name),
                                     m('td', user.email),
-                                    m('td', user.roles[0].name),
                                     m('td', user.created_at),
                                 ]);
                             }),
@@ -39,7 +37,7 @@ var component = {
                                 m('th[colspan=2].text-left', 'Summary'),
                             ]),
                             m('tr', [
-                                m('td', 'Total Users: '),
+                                m('td', 'Total Visitor: '),
                                 m('td.px-4', User.list.length),
                             ]),
                         ])),
@@ -47,7 +45,7 @@ var component = {
                 m('a.appearance-none.py-2.px-4.bg-blue-500.rounded.text-white.hover:bg-blue-700.hover:text-white', {
                     href: '/register',
                     oncreate: m.route.link
-                }, 'Register New User'),
+                }, 'Register New Visitor'),
             ]),
             m(Copy),
         ]);
