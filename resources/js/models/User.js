@@ -34,6 +34,7 @@ var model = {
             })
             .catch(e => {
                 model.error = JSON.parse(e.message);
+                setTimeout(() => { location.reload() }, 900);
             });
     },
     logout: () => {
@@ -41,8 +42,10 @@ var model = {
         m.defaults.headers['Authorization'] = null;
         sessionStorage.removeItem('user');
         m.route.set('/login');
+        location.reload();
     },
     fetchAll: () => {
+        model.list = {};
         m.request({
             method: 'get',
             url: '/api/users',
@@ -55,7 +58,22 @@ var model = {
                 model.error = JSON.parse(e.message);
             });
     },
+    fetchVisitor: () => {
+        model.list = {};
+        m.request({
+            method: 'get',
+            url: '/api/visitors',
+            headers: m.defaults.headers,
+        })
+        .then(res => {
+            model.list = res;
+        })
+        .catch(e => {
+            model.error = JSON.parse(e.message);
+        });
+    },
     fetch: id => {
+        model.current = {};
         m.request({
             method: 'get',
             url: '/api/users/' + id,
@@ -69,6 +87,7 @@ var model = {
             });
     },
     create: data => {
+        model.current = {};
         m.request({
             method: 'post',
             url: '/api/users',
@@ -76,16 +95,16 @@ var model = {
             data,
         })
             .then(res => {
-                model.current = res;
-
-                if (!_isEmpty(model.current))
-                    m.route.set('/login');
+                //model.current = res;
+                m.route.set('/');
+                location.reload();
             })
             .catch(e => {
                 model.error = JSON.parse(e.message);
             });
     },
     update: (data, id) => {
+        model.current = {};
         m.request({
             method: 'put',
             url: '/api/users/' + id,
@@ -94,12 +113,14 @@ var model = {
         })
             .then(res => {
                 model.current = res;
+                location.reload();
             })
             .catch(e => {
                 model.error = JSON.parse(e.message);
             });
     },
     remove: id => {
+        model.current = {};
         m.request({
             method: 'delete',
             url: '/api/users/' + id,

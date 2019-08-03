@@ -6,7 +6,7 @@ import Alert from "./Alert"
 
 var component = {
     view: () => {
-        return m('.w-full.max-w-xs.mx-auto', [
+        return _isEmpty(User.current) ? null : m('.w-full.max-w-xs.mx-auto', [
             _isEmpty(User.error) ? null : m(Alert, { type: 'error', messsage: User.error.errors.user[0] }),
             m('form.form.content[action=/register][method=post]', {
                 onsubmit: e => {
@@ -15,6 +15,7 @@ var component = {
                     User.create({
                         'name': e.target.elements.name.value,
                         'email': e.target.elements.email.value,
+                        'role': e.target.elements.role.value,
                         'password': e.target.elements.password.value,
                         'password_confirmation': e.target.elements.password_confirmation.value,
                     });
@@ -32,6 +33,17 @@ var component = {
                     m('input#email.form__input[type=text][name=email][autocomplete=off][required]'),
                 ]),
                 m('.form__group', [
+                    m('label.input__label[for=role]', 'Role'),
+                    m('select.form__input#role[name=role][required]', [
+                        User.current.roles[0].name === 'admin' ? [
+                            m('option', { value: 'school' }, 'School'),
+                            m('option', { value: 'admin' }, 'Admin')
+                        ] : [
+                            m('option', { value: 'visitor' }, 'Visitor'),
+                        ]
+                    ])
+                ]),
+                m('.form__group', [
                     m('label.input__label[for=password]', 'Password'),
                     m('input#password.form__input[type=password][name=password][required]'),
                 ]),
@@ -41,7 +53,7 @@ var component = {
                 ]),
                 m('.form__footer', [
                     m('button.form__button[type=submit]', 'Register'),
-                    m('a.form__link[href=/login]', { oncreate: m.route.link }, 'Have account?'),
+                    //m('a.form__link[href=/login]', { oncreate: m.route.link }, 'Have account?'),
                 ]),
             ]),
             m(Copy),

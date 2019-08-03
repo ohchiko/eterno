@@ -7,10 +7,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, HasRoles;
+
+    protected $guard_name = 'api';
 
     protected $columns = [
         'id', 'name', 'email', 'email_verified_at', 'password', 'api_token', 'admin', 'remember_token', 'created_at', 'updated_at', 'deleted_at',
@@ -63,5 +66,15 @@ class User extends Authenticatable
     public function scopeExclude($query, $value = [])
     {
         return $query->select(array_diff($this->columns, (array) $value));
+    }
+
+    public function visitor()
+    {
+        return $this->hasMany('App\User', 'created_by');
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo('App\User', 'created_by');
     }
 }

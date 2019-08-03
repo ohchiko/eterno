@@ -9,6 +9,7 @@ import Account from "./components/Account"
 import BookNew from "./components/BookNew"
 import BookView from "./components/BookView"
 import Users from "./components/Users"
+import Visitor from "./components/Visitor"
 
 let getUserApiToken = function () {
     let user = JSON.parse(localStorage.getItem('user'));
@@ -40,4 +41,5 @@ m.route(document.body.querySelector('main'), '/', {
     '/books/new': BookNew,
     '/books/:id': BookView,
     '/users': Users,
+    '/visitor': Visitor,
 });

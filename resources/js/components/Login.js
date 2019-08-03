@@ -31,7 +31,7 @@ var component = {
                 ]),
                 m('.form__footer', [
                     m('button.form__button[type=submit]', 'Sign In'),
-                    m('a.form__link[href=#]', 'Forgot Password?'),
+                    //m('a.form__link[href=#]', 'Forgot Password?'),
                 ]),
             ]),
             m(Copy),

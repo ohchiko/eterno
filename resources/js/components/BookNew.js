@@ -6,7 +6,7 @@ var component = {
     view: () => {
         return m('.w-full.max-w-5xl.mx-auto', [
             m('.content', [
-                m('p.content__title', 'New Year Book'),
+                m('p.content__title', 'New Yearbook'),
                 m('form.form.content', {
                     onsubmit: e => {
                         e.preventDefault();

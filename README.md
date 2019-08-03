@@ -63,7 +63,14 @@ $ php artisan migrate
 ```
 
 
-You may create the administrator account manually from the database client. (Turning the `admin` field to `1` will enabled the administrator privilege to that account).
+Next, you may need to create an administrator account. To do so, enter:
+
+```sh
+$ php artisan make:admin
+```
+
+
+You'll be asked to fill the data for the administrator and confirmation to create one.
 
 
 Once done, the application is ready to use.

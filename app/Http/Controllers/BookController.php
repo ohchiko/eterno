@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:manage pdfs')
+             ->except(['index', 'show']);
+        $this->middleware('permission:view pdfs')
+            ->only(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +24,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Auth::user()->books()->get();
+        if (auth()->user()->hasRole('visitor')) {
+            return auth()->user()->creator->books;
+        }
+        return Auth::user()->books;
     }
 
     /**
@@ -53,6 +64,13 @@ class BookController extends Controller
      */
     public function show($id)
     {
+        if (auth()->user()->hasRole('visitor')) {
+            $book = auth()->user()->creator->books()->with('user')->findOrFail($id);
+            $book->file = base64_encode(Storage::get($book->file_url));
+
+            return $book;
+        }
+
         $book = Auth::user()->books()->with('user')->findOrFail($id);
         $book->file = base64_encode(Storage::get($book->file_url));
 

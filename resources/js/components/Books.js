@@ -9,11 +9,15 @@ var component = {
         Book.fetchAll();
     },
     view: () => {
-        return m('.w-full.max-w-5xl.mx-auto', [
+        return _isEmpty(User.current) ? null : m('.w-full.max-w-5xl.mx-auto', [
             m('.content', [
                 m('.flex.items-center', [
-                    m('p.content__title.flex-grow', User.current.name + '\'s Books'),
-                    m('a.bg-blue-500.text-white.no-underline.rounded.py-1.px-3.font-bold[href=/books/new]', { oncreate: m.route.link }, 'New'),
+                    User.current.roles[0].name === 'visitor'
+                    ? m('p.content__title.flex-grow', 'Yearbooks')
+                    : [
+                        m('p.content__title.flex-grow', User.current.name + '\'s Books'),
+                        m('a.bg-blue-500.text-white.no-underline.rounded.py-1.px-3.font-bold[href=/books/new]', { oncreate: m.route.link }, 'New'),
+                    ]
                 ]),
                 _isEmpty(Book.list) ? null : m('.flex.flex-wrap.items-center.justify-start',
                     Book.list.map(book => m('.card.flex-none', {
