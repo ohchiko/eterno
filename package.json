@@ -21,7 +21,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "axios": "^0.18.1",
+        "axios": "^0.21.1",
         "lodash": "^4.17.14",
         "lodash.filter": "^4.6.0",
         "lodash.isempty": "^4.4.0",
