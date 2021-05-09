@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "axios": "^0.18.1",
-        "lodash": "^4.17.14",
+        "lodash": "^4.17.21",
         "lodash.filter": "^4.6.0",
         "lodash.isempty": "^4.4.0",
         "mithril": "^2.0.0-rc.4"
